@@ -1,6 +1,11 @@
-package com.terziferrario.algo;
+package com.terziferrario.algo.conceptlearning;
 
-public class ConceptLearning {
+import com.terziferrario.algo.DatasetException;
+import com.terziferrario.algo.conceptlearning.ConceptLearning;
+
+import java.util.Arrays;
+
+public class ConceptLearning_T extends ConceptLearning {
 
     /*
      * ? sostituito con il valore 2
@@ -13,53 +18,50 @@ public class ConceptLearning {
      * 
      * @param dataset The dataset with which to go about creating the hypothesis
      * @param target  Contains the target variables of the dataset
-     * @return Hypotesis
+     * @return Hypothesis
      * @throws DatasetException It is launched when the size of the dataset
      *                          and target are not equal
      */
     public byte[] find_s(byte[][] dataset, byte[] target)
             throws DatasetException {
-        byte[] hypotesis = init_hypotesis(dataset.length);
+        byte[] hypothesis = init_hypothesis(dataset.length);
 
         if (dataset[0].length == target.length) {
             for (int i = 0; i < dataset[0].length; i++) {
                 if (target[i] == 1) {
-                    hypotesis = update_hypotesis(hypotesis, dataset[i]);
+                    update_hypothesis(hypothesis, dataset[i]);
                 }
             }
 
         } else {
-            throw new DatasetException(("Dataset size and Target" +
+            throw new DatasetException(("Dataset size and Target " +
                     "size are not equals"));
         }
 
-        return hypotesis;
+        return hypothesis;
     }
 
     /**
      * Initialize the hypothesis by making it as restrictive as possible.
      * 
-     * @param size Dimension of hypotesis
+     * @param size Dimension of hypothesis
      * @return hypothesis
      */
-    private byte[] init_hypotesis(int size) {
-        byte[] hypotesis = new byte[size];
+    private byte[] init_hypothesis(int size) {
+        byte[] hypothesis = new byte[size];
 
-        for (int i = 0; i < hypotesis.length; i++) {
-            hypotesis[i] = -1;
-        }
+        Arrays.fill(hypothesis, (byte) -1);
 
-        return hypotesis;
+        return hypothesis;
     }
 
     /**
      * Update the hypothesis by following the rules of the find-s algorithm.
-     * 
+     *
      * @param current     Current hypothesis
      * @param dataset_row Row of the dataset used to update the hypothesis
-     * @return New hypothesis
      */
-    private byte[] update_hypotesis(byte[] current, byte[] dataset_row) {
+    private void update_hypothesis(byte[] current, byte[] dataset_row) {
         for (int i = 0; i < current.length; i++) {
             if (current[i] == -1) {
                 current[i] = dataset_row[i];
@@ -69,6 +71,5 @@ public class ConceptLearning {
                 current[i] = 2;
             }
         }
-        return current;
     }
 }
