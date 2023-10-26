@@ -1,5 +1,6 @@
 package com.terziferrario.algo;
 
+import com.terziferrario.algo.conceptlearning.ConceptLearning;
 import com.terziferrario.algo.conceptlearning.ConceptLearning_T;
 import org.junit.*;
 
@@ -13,7 +14,7 @@ public class ConceptLearningTest {
 
         byte[] target = { 0, 1, 0, 0, 0 };
 
-        ConceptLearning_T algo = new ConceptLearning_T();
+        ConceptLearning algo = new ConceptLearning_T();
 
         byte[] hypothesis_algo;
         try {
