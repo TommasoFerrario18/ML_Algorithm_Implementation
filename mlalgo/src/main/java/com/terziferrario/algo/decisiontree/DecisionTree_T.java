@@ -56,9 +56,9 @@ public class DecisionTree_T extends DecisionTree {
             InnerDecisionTree_T child = new InnerDecisionTree_T(key, attribute, newDataset, key.toString());
 
             root.addChild(child);
-
-            // ID3(newDataset, newTarget);
         }
+
+        // Manca la parte ricorsiva/iterativa della creazione dell'albero
     }
 
     /**
